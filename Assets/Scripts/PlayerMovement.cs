@@ -12,8 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public float WalkingSpeed = 850;
     public float RunningSpeed = 1125;
     private float Speed;
-    public GameObject slider;
-    
 
     [SerializeField]
     public bool isRunning = false;
