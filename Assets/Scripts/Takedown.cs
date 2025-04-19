@@ -32,7 +32,7 @@ public class Takedown : MonoBehaviour
                 rbEnemy.linearVelocity = new Vector2(0, 0);
                 rbPlayer.linearVelocity = new Vector2(0, 0);
                 player.GetComponent<PlayerMovement>().InputMove = false;
-                Invoke(nameof(DecreaseIncrementation),.1f);
+                Invoke(nameof(DecreaseIncrementation),.05f);
 
             }
             if (!Input.GetKey(KeyCode.Q))
@@ -110,7 +110,7 @@ public class Takedown : MonoBehaviour
     }
     void DecreaseIncrementation()
     {
-        tDownBarDecrease = 75f;
+        tDownBarDecrease = 120f;
         tDownBarIncrease = 25f;
     }
 }
