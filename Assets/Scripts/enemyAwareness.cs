@@ -6,7 +6,7 @@ public class enemyAwareness : MonoBehaviour
     public Rigidbody2D enemyRigid;
     public Transform enemyTransform;
     public Transform playerTransform;
-    public Transform patrolPoint;
+    
     private bool isPlayerInside = false;
     public float step = 10f;
     public float patrolSpeed = 1f;
@@ -50,12 +50,12 @@ public class enemyAwareness : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
        
         if (collision.CompareTag("Player"))
         {
-            print("Yarrak");
+            
             isPlayerInside = true;
         }
 
@@ -65,8 +65,7 @@ public class enemyAwareness : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInside = false;
-
-            
+  
         }
     }
     

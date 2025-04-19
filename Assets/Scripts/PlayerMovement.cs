@@ -1,14 +1,19 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject takedownButton;
     public Rigidbody2D rb;
+    public Rigidbody2D enemyrb;
     public float WalkingSpeed = 850;
     public float RunningSpeed = 1125;
     private float Speed;
 
+    [SerializeField]
     public bool isRunning = false;
     public bool isDashing = false;
     public float stamina = 100f;
@@ -16,14 +21,17 @@ public class PlayerMovement : MonoBehaviour
     public float recoverStamina;
     public float onDashStaminaLost = 2f;
     public float onRunStaminaLost = 0.8f;
-
-
+    [SerializeField]
+    public bool InputMove = true;
+    public float attackRecoil;
+    public float deadTime;
+    [SerializeField]
     private float activeSpeed;
     public float dashSpeed = 2000; // Default value for dash speed
     public float dashLength = 0.5f, dashCooldown = 1f;
     private float dashCounter;
     private float dashCoolCounter;
-
+    [SerializeField]
     private Vector2 movement;
 
     // Start is called before the first frame update
@@ -37,21 +45,24 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (InputMove)
+        {
+            // Gets movement input
+            GetMovementInput();
 
-        // Gets movement input
-        GetMovementInput();
+            StaminaRecovery();
+            StaminaLoss();
 
-        StaminaRecovery();
-        StaminaLoss();
+            // Handles running / walking
+            HandleRunning();
 
-        // Handles running / walking
-        HandleRunning();
-        
-        // Handles dashing
-        HandleDashing();
-        
-        // Applies movement
-        MovePlayer();
+            // Handles dashing
+            HandleDashing();
+
+            // Applies movement
+            MovePlayer();
+        }
+    
 
     }
 
@@ -132,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             stamina -= onDashStaminaLost;
-            //recoverStamina = 0;
+            recoverStamina = 0;
 
         }
 
@@ -143,19 +154,39 @@ public class PlayerMovement : MonoBehaviour
 
         }
         stamina = Mathf.Clamp(stamina, 0, 100);
-        print(stamina);
     }
     void StaminaRecovery()
     {
 
-        if (!isRunning && !isDashing && !Input.GetKey(KeyCode.LeftShift))
+        if (!isRunning && !isDashing && !Input.GetKey(KeyCode.LeftShift)&&!Input.GetKeyDown(KeyCode.Space))
         {
             recoverStamina = recoveryRate;
             stamina += recoveryRate * Time.deltaTime;
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("AttackRange"))
+        {
+            InputMove = false;
+            Vector2 force = new Vector2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y);
+            rb.AddForceY(-force.y * attackRecoil,ForceMode2D.Impulse);
+            rb.AddForceX(-force.x * attackRecoil,ForceMode2D.Impulse);
+            Invoke(nameof(MoveAgain), deadTime);
+            
+            
+        }
 
 
-    
-    
+    }
+
+
+    void MoveAgain()
+    {
+        InputMove = true;
+    }
+
+
+
+
 }
