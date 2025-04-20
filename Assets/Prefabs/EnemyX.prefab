@@ -204,6 +204,7 @@ MonoBehaviour:
   enemyRigid: {fileID: 2015130603549693771}
   enemyTransform: {fileID: 6700739102967721737}
   playerTransform: {fileID: 0}
+  spriteRenderer: {fileID: 6428354174841118058}
   step: 3
   patrolSpeed: 1
   patrolTimer: 7
@@ -288,7 +289,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -7133367710062084701, guid: 3bc983210b118e042bf34e3927c46c75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

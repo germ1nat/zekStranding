@@ -9,13 +9,19 @@ public class PlayerMovement : MonoBehaviour
     public GameObject takedownButton;
     public Rigidbody2D rb;
     public Rigidbody2D enemyrb;
+    public Transform transform;
     public float WalkingSpeed = 850;
     public float RunningSpeed = 1125;
     private float Speed;
+    public SpriteRenderer spriteRenderer;
+
+    [SerializeField] private Animator animator;
+
 
     [SerializeField]
     public bool isRunning = false;
     public bool isDashing = false;
+    public bool isWalking = true;
     public float stamina = 100f;
     public float recoveryRate = 20f;
     public float recoverStamina;
@@ -47,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (InputMove)
         {
+            NoMovement();
             // Gets movement input
             GetMovementInput();
 
@@ -61,9 +68,16 @@ public class PlayerMovement : MonoBehaviour
 
             // Applies movement
             MovePlayer();
+            PlayerRotator();
         }
     
 
+    }
+    private void Update()
+    {
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isRunning", isRunning);
+ 
     }
 
     void GetMovementInput()
@@ -79,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftShift) && stamina > onRunStaminaLost)
         {
+            
             isRunning = true;
             Speed = RunningSpeed;
         }
@@ -100,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         // Starts dash
         if (Input.GetKeyDown(KeyCode.Space) && dashCoolCounter <= 0 && dashCounter <= 0 && stamina > onDashStaminaLost)
         {
-
+            animator.SetTrigger("isDodge");
             // Only dash if there's movement input (prevents dashing in place)
             
             
@@ -185,7 +200,24 @@ public class PlayerMovement : MonoBehaviour
     {
         InputMove = true;
     }
-
+    void PlayerRotator()
+    {
+        if (rb.linearVelocityX > 0)
+            spriteRenderer.flipX = false;
+        else if (rb.linearVelocityX < 0)
+            spriteRenderer.flipX = true;
+    }
+    void NoMovement()
+    {
+        if (rb.linearVelocity.x == 0 && rb.linearVelocity.y == 0)
+        {
+            isWalking = false;
+        }
+        else
+        {
+            isWalking = true;
+        }
+    }
 
 
 

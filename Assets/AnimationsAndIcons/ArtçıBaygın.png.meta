@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f1b9fd40e1f16b641bb50000e4a28dbc
+guid: 6ef9816ea15d7b64899d2843a2a02c5d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1140297895748745709
-    second: Patika4 9_0
+      213: 8159774199643143800
+    second: "Art\xE7\u0131Bayg\u0131n_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -110,19 +110,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -139,12 +126,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Patika4 9_0
+      name: "Art\xE7\u0131Bayg\u0131n_0"
       rect:
         serializedVersion: 2
-        x: 27
-        y: 35
-        width: 90
+        x: 25
+        y: 51
+        width: 238
         height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31645c9fa19dc20f0800000000000000
-      internalID: -1140297895748745709
+      spriteID: 87e7029f6675d3170800000000000000
+      internalID: 8159774199643143800
       vertices: []
       indices: 
       edges: []
@@ -173,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Patika4 9_0: -1140297895748745709
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
